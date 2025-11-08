@@ -1,0 +1,42 @@
+# Cloudflare Workers/Pages configuration for AIscribe
+
+name = "aiscribe"
+compatibility_date = "2024-01-01"
+account_id = "" # Add your Cloudflare account ID
+
+# Pages configuration for frontend
+[env.production]
+pages_build_output_dir = "../frontend/out"
+
+[[env.production.routes]]
+pattern = "aiscribe.com.au/*"
+zone_name = "aiscribe.com.au"
+
+[[env.production.routes]]
+pattern = "www.aiscribe.com.au/*"
+zone_name = "aiscribe.com.au"
+
+# R2 Bindings for audio storage
+[[r2_buckets]]
+binding = "AUDIO_BUCKET"
+bucket_name = "aiscribe-audio"
+preview_bucket_name = "aiscribe-audio-dev"
+
+# Environment variables for Workers
+[vars]
+ENVIRONMENT = "production"
+API_URL = "https://api.aiscribe.com.au"
+
+# Secrets (set via: wrangler secret put SECRET_NAME)
+# STRIPE_WEBHOOK_SECRET
+# JWT_SECRET
+
+# Development environment
+[env.development]
+pages_build_output_dir = "../frontend/out"
+vars = { ENVIRONMENT = "development", API_URL = "http://localhost:8000" }
+
+# Staging environment
+[env.staging]
+pages_build_output_dir = "../frontend/out"
+vars = { ENVIRONMENT = "staging", API_URL = "https://api-staging.aiscribe.com.au" }

@@ -1,0 +1,48 @@
+# Cloudflare Tunnel configuration for AIscribe backend
+# Replace <TUNNEL-ID> with your actual tunnel ID
+# Get it from: cloudflared tunnel list
+
+tunnel: aiscribe-backend
+credentials-file: /root/.cloudflared/<TUNNEL-ID>.json
+
+# Ingress rules - route traffic to your services
+ingress:
+  # Main API endpoint
+  - hostname: api.aiscribe.com.au
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+      tlsTimeout: 10s
+
+  # WebSocket endpoint for real-time transcription
+  - hostname: ws.aiscribe.com.au
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: false
+      connectTimeout: 30s
+
+  # Admin interface (protected by Cloudflare Access)
+  - hostname: admin.aiscribe.com.au
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: false
+
+  # Staging API
+  - hostname: api-staging.aiscribe.com.au
+    service: http://localhost:8001
+    originRequest:
+      noTLSVerify: false
+
+  # Catch-all rule (required)
+  - service: http_status:404
+
+# Optional: Configure tunnel to run only in Australia
+# (Once Cloudflare supports regional routing)
+# region: au-southeast
+
+# Logging
+loglevel: info
+
+# Metrics endpoint (for monitoring)
+metrics: localhost:2000
