@@ -38,6 +38,9 @@ aiofiles==23.2.1
 httpx==0.26.0
 python-dateutil==2.8.2
 
+# Payment Processing
+stripe==7.10.0
+
 # PDF Generation
 reportlab==4.0.9
 pypdf==3.17.4

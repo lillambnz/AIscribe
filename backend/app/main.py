@@ -6,7 +6,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 
 from app.core.config import settings
 from app.core.database import engine, Base
-from app.api import encounters, stream, exports, auth, health
+from app.api import encounters, stream, exports, auth, health, billing
 
 
 @asynccontextmanager
@@ -50,6 +50,7 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 # Include routers
 app.include_router(health.router, prefix="/health", tags=["health"])
 app.include_router(auth.router, prefix="/v1/auth", tags=["auth"])
+app.include_router(billing.router, prefix="/v1/billing", tags=["billing"])
 app.include_router(encounters.router, prefix="/v1/encounters", tags=["encounters"])
 app.include_router(stream.router, prefix="/v1", tags=["streaming"])
 app.include_router(exports.router, prefix="/v1/exports", tags=["exports"])

@@ -20,6 +20,7 @@ class Clinic(Base):
     # Relationships
     users = relationship("User", back_populates="clinic")
     encounters = relationship("Encounter", back_populates="clinic")
+    subscription = relationship("Subscription", back_populates="clinic", uselist=False)
 
     def __repr__(self):
         return f"<Clinic {self.name}>"

@@ -67,5 +67,10 @@ class Settings(BaseSettings):
     ENABLE_DIARIZATION: bool = True
     PYANNOTE_AUTH_TOKEN: str = ""
 
+    # Payment Processing (Stripe)
+    STRIPE_SECRET_KEY: str = ""
+    STRIPE_PUBLISHABLE_KEY: str = ""
+    STRIPE_WEBHOOK_SECRET: str = ""
+
 
 settings = Settings()
