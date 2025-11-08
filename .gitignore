@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Backend specific
+backend/.env
+backend/alembic/versions/*.py
+!backend/alembic/versions/.gitkeep
+backend/*.db
+
+# Node
+node_modules/
+.next/
+out/
+.cache/
+
+# Frontend specific
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+frontend/.env.test.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Audio files
+*.wav
+*.mp3
+*.m4a
+*.opus
+
+# Database
+*.db
+*.sqlite
+
+# Secrets
+*.pem
+*.key
+*.crt
+credentials.json
